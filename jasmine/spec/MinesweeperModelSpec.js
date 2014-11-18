@@ -17,4 +17,6 @@ describe("MinesweeperModel", function() {
     custom = new MinesweeperModel({ width: 99 });
     expect(custom.options.width).toEqual(99)
   });
+
+  
 });
