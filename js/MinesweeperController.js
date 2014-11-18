@@ -31,6 +31,7 @@ MinesweeperController.prototype.openCellsAround = function(x,y) {
   var width = this.opts.model.board.length
   var height = this.opts.model.board[0].length
   if(this.opts.model.board[x][y].clicked === true) return;
+  console.log(this.opts.model.board);
   this.opts.model.board[x][y].clicked = true;
   console.log(this.opts.model.board);
   for( var x_i = -1; x_i < 2; x_i++) {
@@ -43,8 +44,8 @@ MinesweeperController.prototype.openCellsAround = function(x,y) {
         this.opts.view.updateCell(new_x, new_y, 0);
         console.log(clicked);
         console.log(value);
-        if (value === 0 && clicked === false) {
-          this.cellsAround(new_x, new_y)
+        if (value === 0) {
+          this.openCellsAround(new_x, new_y);
         }
       }
     }
