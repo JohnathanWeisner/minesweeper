@@ -13,4 +13,5 @@ describe("MinesweeperView", function() {
     custom = new MinesweeperView({ board: [[0,0],[0,0],[0,0]] });
     expect(custom.options.board).toEqual([[0,0],[0,0],[0,0]]);
   });
+
 });
