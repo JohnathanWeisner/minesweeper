@@ -1,11 +1,11 @@
-var MinesweeperModel = function (opts) {
+var Board = function (opts) {
   var defaultOpts = { width: 9, height: 9 };
   this.opts = $.extend(defaultOpts, opts);
   this.opts.mines = (this.opts.width * this.opts.height) / 8
-  this.board = this.randomBoard();
+  return this.randomBoard();
 };
 
-MinesweeperModel.prototype.randomBoard = function() {
+Board.prototype.randomBoard = function() {
   var board = [];
   var coords = this.mineCoords();
   for(var x = 0; x < this.opts.height; x++){
@@ -22,13 +22,13 @@ MinesweeperModel.prototype.randomBoard = function() {
   return board;
 }
 
-MinesweeperModel.prototype.randomCoord = function() {
+Board.prototype.randomCoord = function() {
   var x = Math.floor((Math.random() * this.opts.height));
   var y = Math.floor((Math.random() * this.opts.width));
   return [x, y];
 }
 
-MinesweeperModel.prototype.mineCoords = function() {
+Board.prototype.mineCoords = function() {
   var coord = this.randomCoord();
   var coords = [];
   for(var i = 0; i < this.opts.mines; i++){
@@ -40,11 +40,11 @@ MinesweeperModel.prototype.mineCoords = function() {
   return coords;
 }
 
-MinesweeperModel.prototype.compareCoords = function(a,b) {
+Board.prototype.compareCoords = function(a,b) {
   return a[0] === b[0] && a[1] === b[1]
 }
 
-MinesweeperModel.prototype.coordIn = function(coord, array) {
+Board.prototype.coordIn = function(coord, array) {
   for(var x = 0; x < array.length; x++) {
     if(this.compareCoords(coord, array[x])) {
       return x;

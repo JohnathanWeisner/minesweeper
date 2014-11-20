@@ -1,7 +1,6 @@
 $(function() {
-  var model = new MinesweeperModel();
-  var view = new MinesweeperView({board: model.board});
-  var controller = new MinesweeperController({model: model, view: view});
+  var board = new Board();
+  var view = new MinesweeperView({board: board});
+  var controller = new MinesweeperController({board: board, view: view});
   controller.run();
-  
 });
