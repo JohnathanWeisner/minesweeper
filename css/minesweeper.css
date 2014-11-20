@@ -7,15 +7,36 @@
   margin: 0;
   padding: 0;
   height: 50px;
-  background-color: yellow;
+  background-color: gray;
+  vertical-align: top;
 }
 
 .cell{
+  vertical-align: top;
   display: inline-block;
+  padding: 0;
+  margin: 0;
   width: 48px;
   height: 48px;
-  line-height: 88px;
-  text-align: center;
-  background-color: blue;
+  background-color: #888;
   border: 1px solid black;
+  position: relative;
+}
+
+.cell span{
+  position: absolute;
+  top: 10px;
+  right: 20px;
+}
+
+.unclicked {
+  background-color: #777;
+}
+
+.clicked {
+  background-color: #FFF;
+}
+
+.bomb {
+  background-color: red;
 }
