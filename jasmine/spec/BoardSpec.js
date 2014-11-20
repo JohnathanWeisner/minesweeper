@@ -6,11 +6,11 @@ describe("Board", function() {
   });
 
   it("should have default width option", function() {
-    expect(game.length).toEqual(10);
+    expect(game.length).toEqual(9);
   });
 
   it("should have default width option", function() {
-    expect(game[0].length).toEqual(10);
+    expect(game[0].length).toEqual(9);
   });
 
   it("should be able to accept custom options", function() {

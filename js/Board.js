@@ -2,7 +2,7 @@ var Board = function (opts) {
   var defaultOpts = { width: 9, height: 9 };
   this.opts = $.extend(defaultOpts, opts);
   this.opts.mines = (this.opts.width * this.opts.height) / 8
-  return this.randomBoard();
+  return this.populateMineProximityValues(this.randomBoard());
 };
 
 Board.prototype.randomBoard = function() {
@@ -18,6 +18,25 @@ Board.prototype.randomBoard = function() {
       };
       board[x].push(new Cell(value));
     } 
+  }
+  return board;
+}
+
+Board.prototype.populateMineProximityValues = function(board) {
+  for(var x = 0; x < board.length; x++) {
+    for(var y = 0; y < board[0].length; y++) {
+      if(board[x][y].value != 9) {
+        for(var x_i = -1; x_i <= 1 ; x_i++) {
+          for(var y_i = -1; y_i <= 1; y_i++) {
+            var new_x = x + x_i;
+            var new_y = y + y_i;
+            if(this.inBounds(new_x, new_y) && board[new_x][new_y].value === 9) {
+              board[x][y].value += 1;
+            }
+          }
+        }
+      }
+    }
   }
   return board;
 }
@@ -51,6 +70,12 @@ Board.prototype.coordIn = function(coord, array) {
     }
   }
   return -1;
+}
+
+Board.prototype.inBounds = function(x,y) {
+  var width = this.opts.width
+  var height = this.opts.height
+  return (x < height && x > -1 && y < width && y > -1)
 }
 
 var Cell = function(value) {
